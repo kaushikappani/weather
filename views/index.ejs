@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<link rel="icon" href="images/logo.png">
+		<title>AccWeather</title>
+
+		<!-- Loading third party fonts -->
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="style.css">
+
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+		<script type="text/javascript">
+		navigator.geolocation.getCurrentPosition(function(position) {
+			// return position;
+			console.log(position);
+			const latitude= position.coords.latitude;
+			const longitude= position.coords.longitude;
+			document.getElementById('lat').value=latitude
+			document.getElementById('long').value=longitude
+			console.log(longitude);
+		});
+		</script>
+		<script type="text/javascript">
+			function formSubmit(){
+				document.getElementById('myForm').submit()
+			}
+		</script>
+		<script src="https://kit.fontawesome.com/5f7bda22e9.js" crossorigin="anonymous"></script>
+	</head>
+
+
+	<body>
+
+		<div class="site-content">
+			<div class="site-header"  style="padding-bottom:20px;padding-top:20px">
+				<div class="container">
+					<a href="/" class="branding">
+						<img src="images/logo.png" alt="" class="logo">
+						<div class="logo-type">
+							<h1 class="site-title">AccWeather</h1>
+							<small class="site-description">The Accurate Weather News</small>
+						</div>
+					</a>
+
+					<!-- Default snippet for navigation -->
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item" onclick="formSubmit()"><a style="cursor:pointer">Locate Me</a></li>
+								<li class="menu-item"><a href="https://covid19express.herokuapp.com">Covid-19 Updates</a></li>
+							<!-- <li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
+							<li class="menu-item"><a href="news.html">News</a></li>
+							<li class="menu-item"><a href="live-cameras.html">Live cameras</a></li>
+							<li class="menu-item"><a href="photos.html">Photos</a></li> -->
+							<!-- <li class="menu-item"><a href="contact.html">Contact</a></li> -->
+						</ul> <!-- .menu -->
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+
+				</div>
+			</div> <!-- .site-header -->
+
+			<div class="hero" data-bg-image="images/banner.png">
+				<div class="container">
+					<form id="myForm" class="" action="/locate" method="post">
+						<input id="lat" type="text" name="lat" value="" style="display:none" required>
+						<input id="long" type="text" name="long" value="" style="display:none" required>
+						<input type="submit" name="" value="locate me" style="display:none">
+					</form>
+					<form action="/" class="find-location" method="post">
+						<input name="location" type="text" placeholder="Find your location..." required>
+						<input type="submit" value="Find">
+					</form>
+				</div>
+			</div>
+			<div class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day"><%=day%></div>
+								<div class="date"><%=date%></div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="location"><span><img src="images/icon-marker.png" alt=""> -</span></div>
+								<div class="degree">
+									<div class="num">-<sup>o</sup>C</div>
+									<div class="forecast-icon">
+
+									</div>
+								</div>
+								<span><img src="images/icon-umberella.png" alt="">-%</span>
+								<span><img src="images/icon-wind.png" alt="">-m/s</span>
+								<span><img src="images/icon-compass.png" alt="">-<sup>o</sup></span>
+							</div>
+						</div>
+						<div class="forecast" style="width:33%">
+							<div class="forecast-header">
+								<div class="day">Humidity</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<i class="fas fa-tint fa-5x"></i>
+								</div>
+								<div class="degree" style="padding-top:20px;">-%</div>
+								<!-- <small>18<sup>o</sup></small> -->
+							</div>
+						</div>
+						<div class="forecast" style="width:33%">
+							<div class="forecast-header">
+								<div class="day">Max-temp</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<i class="fas fa-thermometer-quarter fa-5x"></i>
+								</div>
+								<div class="degree" style="padding-top:20px;">-<sup>o</sup>C</div>
+								<!-- <small>18<sup>o</sup></small> -->
+							</div>
+						</div>
+						<div class="forecast" style="width:33%">
+							<div class="forecast-header">
+								<div class="day">Pressures</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<i class="fas fa-tachometer-alt fa-5x"></i>
+								</div>
+								<div class="degree" style="padding-top:20px;">-hpa</div>
+
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<!-- <form action="/email" method="post" class="subscribe-form">
+								<input type="text" placeholder="Enter your email to subscribe...">
+								<input type="submit" value="Subscribe">
+							</form> -->
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="social-links">
+								<a href="https://www.facebook.com/kaushikappani/"><i class="fa fa-facebook"></i></a>
+								<a href="https://www.instagram.com/kaushikappani/"><i class="fa fa-instagram"></i></a>
+								<a href="https://github.com/kaushikappani"><i class="fa fa-github"></i></a>
+								<a href="https://www.linkedin.com/in/kaushik-appani-921345152"><i class="fa fa-linkedin"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<p class="colophon" style="padding-top:20px;">Made with ❤ by Kaushik Appani</p>
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+
+	</body>
+
+
+</html>
